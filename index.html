@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matheus Borba | Portfólio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="folder">📁 mthperera</div>
+      <ul>
+        <li><a href="#" onclick="openTab('readme')">📝 README.md</a></li>
+        <li><a href="#" onclick="openTab('projetos')">📁 projetos/</a></li>
+        <li><a href="#" onclick="openTab('conquistas')">🏅 conquistas.md</a></li>
+        <li><a href="#" onclick="openTab('contato')">📄 contato.txt</a></li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <div class="tabs" id="tabs"></div>
+
+      <div class="content" id="content">
+        <section id="readme" class="section">
+          <h2>README</h2>
+          <p><strong>Nome:</strong> Matheus Henrique Pereira Borba</p>
+          <p><strong>Curso:</strong> Ciência da Computação — Insper (bolsista integral)</p>
+        
+          <h3>🧠 Sobre mim</h3>
+          <p>
+            Tenho mais de 100 medalhas em olimpíadas científicas nacionais e internacionais. Sou fascinado por ciência, tecnologia e pesquisa.  
+            Quero usar programação e inteligência artificial para resolver problemas reais, especialmente em contextos de física e química.
+          </p>
+        
+          <h3>🔬 Áreas de interesse</h3>
+          <ul>
+            <li>Redes neurais e aprendizado por reforço</li>
+            <li>Física computacional e simulações (OpenFOAM, termodinâmica, fluidos)</li>
+            <li>Química digital (Raman, espectroscopia, análise de polímeros)</li>
+            <li>Jogos com Pygame, UI/UX experimental e IA de jogos</li>
+            <li>Projetos que integram arte e ciência</li>
+          </ul>
+        
+          <h3>📁 Projetos em destaque</h3>
+          <ul>
+            <li><strong>Predição de Tc de supercondutores:</strong> usando regressão e redes neurais em PyTorch</li>
+            <li><strong>Simulação Rayleigh-Bénard:</strong> modelagem de convecção térmica com OpenFOAM</li>
+            <li><strong>Alice vs Rainhas:</strong> jogo estilo Cuphead com Pygame e IA</li>
+            <li><strong>Transcrição com envio por e-mail:</strong> sistema Django com gravação e armazenamento</li>
+          </ul>
+        
+          <h3>🎯 Objetivos</h3>
+          <p>
+            Construir soluções que combinem rigor científico e aplicabilidade prática.  
+            Quero transformar conhecimento em impacto real — seja em pesquisa, ensino ou tecnologia.
+          </p>
+        
+          <h3>📎 Extras</h3>
+          <p>Se quiser saber mais sobre mim, visite <a href="#" onclick="openTab('contato')">contato.txt</a> ou veja meus <a href="#" onclick="openTab('conquistas')">🏅 conquistas.md</a>.</p>
+        </section>
+        
+
+        <section id="projetos" class="section">
+          <h2>Projetos</h2>
+          <ul>
+            <li><strong>Previsão de temperatura crítica de supercondutores:</strong> uso de regressão e redes neurais (PyTorch).</li>
+            <li><strong>Simulação de convecção Rayleigh-Bénard:</strong> simulação física com OpenFOAM.</li>
+            <li><strong>Alice vs Rainhas:</strong> jogo estilo Cuphead feito com Pygame, baseado em Alice no País das Maravilhas.</li>
+            <li><strong>Sistema de transcrição:</strong> grava, transcreve e envia e-mail ao final, usando Django.</li>
+          </ul>
+        </section>
+
+
+        <section id="conquistas" class="section">
+          <h2>Conquistas</h2>
+          <p>
+            Conquistei mais de 100 medalhas em olimpíadas científicas nacionais e internacionais — incluindo mais de 40 de ouro, 20 de prata, 20 de bronze e mais de 10 menções honrosas.
+          </p>
+          <ul>
+            <li>🥇 <strong>Ouro</strong> na Olimpíada Brasileira de Química (OBQ) – 2023, 2024</li>
+            <li>🥇 <strong>Ouro</strong> na OBMEP Nacional – 2024; 🥈 Prata – 2019, 2021, 2023; 🥉 Bronze – 2022</li>
+            <li>🥇 <strong>Ouro</strong> na OBMEP Regional – 2023, 2024</li>
+            <li>🥉 <strong>Bronze</strong> na Olimpíada Brasileira de Matemática (OBM) – 2021; 🎖️ Menção Honrosa – 2023</li>
+            <li>🥉 <strong>Bronze</strong> na Olimpiada de Mayo (Internacional) – 2022</li>
+            <li>🥉 <strong>Bronze</strong> no Torneio Internacional de Jovens Físicos (IYPT) – 2024</li>
+            <li>🥇 <strong>Ouro</strong> na Olimpíada Brasileira de Física (OBF) – 2021; 🥈 Prata – 2022, 2023; 🥉 Bronze – 2024</li>
+            <li>🥇 <strong>Ouro</strong> na Olimpíada Nacional de Ciências (ONC) – 2020, 2021, 2022, 2023, 2024</li>
+            <li>🥇 <strong>Ouro</strong> na Olimpíada Brasileira de Astronomia (OBA) – 2020, 2021, 2022, 2024</li>
+          </ul>
+          <p>Para a lista completa de conquistas, consulte meu <a href="http://lattes.cnpq.br/3616600365153661" target="_blank">currículo Lattes</a>.</p>
+        </section>        
+
+
+        <section id="contato" class="section">
+          <h2>Contato</h2>
+        
+          <div class="contato-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" class="icon" />
+            <div>
+              <a href="https://www.linkedin.com/in/matheus-borba-a43a08223/" target="_blank"><strong>LinkedIn</strong></a>
+              <p>Veja meu perfil profissional, experiências, conquistas acadêmicas e conexões.</p>
+            </div>
+          </div>
+        
+          <div class="contato-item">
+            <img src="https://avatars.githubusercontent.com/u/105271783?v=4" alt="GitHub" class="foto" />
+            <div>
+              <a href="https://github.com/mthperera" target="_blank"><strong>GitHub</strong></a>
+              <p>Veja meus repositórios, códigos de projetos em Python, jogos com Pygame, redes neurais e mais.</p>
+            </div>
+          </div>
+        
+          <div class="contato-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/2306/2306154.png" alt="Lattes" class="icon" />
+            <div>
+              <a href="https://lattes.cnpq.br/seu-id" target="_blank"><strong>Lattes</strong></a>
+              <p>Veja meu currículo acadêmico completo, com publicações, prêmios e trajetória científica.</p>
+            </div>
+          </div>
+        </section>        
+
+        
+        <section id="terminal"></section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const tabData = {
+      readme: { label: 'README.md', icon: '📝' },
+      projetos: { label: 'projetos', icon: '📁' },
+      conquistas: { label: 'conquistas.md', icon: '🏅' },
+      contato: { label: 'contato.txt', icon: '📄' }
+    };
+
+    const tabsEl = document.getElementById("tabs");
+    const terminal = document.getElementById("terminal");
+
+    function openTab(id) {
+      // ativa conteúdo
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      // terminal visível se houver aba
+      terminal.style.display = 'block';
+
+      // ativa aba se já existe
+      const existing = document.getElementById("tab-" + id);
+      if (existing) {
+        setActiveTab(existing);
+        return;
+      }
+
+      // cria nova aba
+      const tab = document.createElement("div");
+      tab.className = "tab active";
+      tab.id = "tab-" + id;
+      tab.draggable = true;
+      tab.innerHTML = `${tabData[id].icon} ${tabData[id].label} <span class="close" onclick="closeTab(event, '${id}')">✕</span>`;
+      tab.onclick = () => openTab(id);
+
+      tab.addEventListener("dragstart", e => {
+        e.dataTransfer.setData("text/plain", id);
+        tab.classList.add("dragging");
+      });
+
+      tab.addEventListener("dragend", () => {
+        tab.classList.remove("dragging");
+      });
+
+      tabsEl.appendChild(tab);
+      setActiveTab(tab);
+    }
+
+    function closeTab(e, id) {
+      e.stopPropagation();
+      const tab = document.getElementById("tab-" + id);
+      const wasActive = tab.classList.contains("active");
+      tab.remove();
+      document.getElementById(id).classList.remove("active");
+
+      const remaining = document.querySelectorAll(".tab");
+      if (remaining.length === 0) {
+        terminal.style.display = "none";
+        return;
+      }
+
+      if (wasActive) {
+        const lastId = remaining[remaining.length - 1].id.replace("tab-", "");
+        openTab(lastId);
+      }
+    }
+
+    function setActiveTab(tab) {
+      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+    }
+
+    tabsEl.addEventListener("dragover", e => {
+      e.preventDefault();
+      const dragging = document.querySelector(".dragging");
+      const after = getDragAfterElement(tabsEl, e.clientX);
+      if (after == null) {
+        tabsEl.appendChild(dragging);
+      } else {
+        tabsEl.insertBefore(dragging, after);
+      }
+    });
+
+    tabsEl.addEventListener("drop", e => {
+      const dragging = document.querySelector(".dragging");
+      if (dragging) {
+        const id = dragging.id.replace("tab-", "");
+        setTimeout(() => openTab(id), 0); // ativa a aba recém reposicionada
+      }
+    });
+
+    function getDragAfterElement(container, x) {
+      const draggables = [...container.querySelectorAll(".tab:not(.dragging)")];
+      return draggables.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = x - box.left - box.width / 2;
+        if (offset < 0 && offset > closest.offset) {
+          return { offset: offset, element: child };
+        } else {
+          return closest;
+        }
+      }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    window.onload = () => {
+      openTab("readme");
+    };
+  </script>
+</body>
+</html>

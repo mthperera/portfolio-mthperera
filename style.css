@@ -1,0 +1,179 @@
+body {
+  margin: 0;
+  font-family: Consolas, monospace;
+  background-color: #282a36;
+  color: #f8f8f2;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  width: 200px;
+  background-color: #1e1f29;
+  color: #8be9fd;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-right: 1px solid #444;
+  flex-shrink: 0;
+}
+
+.sidebar .folder {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar a {
+  display: block;
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  color: #8be9fd;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: #44475a;
+}
+
+/* === ÁREA PRINCIPAL === */
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* === ABAS === */
+.tabs {
+  display: flex;
+  background-color: #44475a;
+  border-bottom: 1px solid #6272a4;
+  user-select: none;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  background-color: #44475a;
+  color: #f8f8f2;
+  border-right: 1px solid #6272a4;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.tab.active {
+  background-color: #282a36;
+}
+
+.tab .close {
+  margin-left: 8px;
+  color: #ff5555;
+  cursor: pointer;
+}
+
+.tab.dragging {
+  opacity: 0.5;
+}
+
+/* === CONTEÚDO === */
+.content {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem 2rem;
+  background-color: #282a36;
+  position: relative;
+  padding-bottom: 220px; /* espaço para o terminal */
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+h2 {
+  color: #ff79c6;
+}
+
+a {
+  color: #50fa7b;
+}
+
+/* === TERMINAL === */
+#terminal {
+  position: fixed;
+  bottom: 0;
+  left: 235px; /* mesma largura da sidebar */
+  right: 0;
+  height: 60px;
+  background-color: #1e1f29;
+  border-top: 1px solid #444;
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: #f1fa8c;
+  font-family: monospace;
+  z-index: 10;
+  display: none;
+  overflow-y: auto;
+}
+
+#terminal::before {
+  content: "PS C:\\Users\\Matheus Borba\\mthperera>";
+  color: #8be9fd;
+  margin-right: 0.5rem;
+}
+
+/* === SCROLLBAR === */
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #44475a;
+  border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-track {
+  background-color: #282a36;
+}
+
+.contato-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contato-item img.icon {
+  width: 32px;
+  height: 32px;
+}
+
+.contato-item img.foto {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
