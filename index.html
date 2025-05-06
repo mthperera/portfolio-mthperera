@@ -24,8 +24,8 @@
             <li><span class="line"></span><a href="#" onclick="openTab('fosforo')">📝 fosforo.md</a></li>
             <li><span class="line"></span><a href="#" onclick="openTab('raman')">📝 raman.md</a></li>
             <li><span class="line"></span><a href="#" onclick="openTab('rayleigh')">📝 rayleigh.md</a></li>
-            <li><span class="line"></span><a href="#" onclick="openTab('cuphead')">📝 cuphead.md</a></li>
-            <li><span class="line"></span><a href="#" onclick="openTab('supercondutores')">📝 supercondutores.md</a></li>
+            <li><span class="line"></span><a href="#" onclick="openTab('alice')">📝 alice.md</a></li>
+            <li><span class="line"></span><a href="#" onclick="openTab('supercondutores')">📝 supercondução.md</a></li>
             <li><span class="line"></span><a href="#" onclick="openTab('dino-ai')">📝 dino-ai.md</a></li>
           </ul>
         </li>
@@ -125,6 +125,425 @@
           </ul>
         </section>        
 
+        <section id="fosforo" class="section">
+          <h2>📦 Previsão da quantidade de fósforos</h2>
+          
+          <p>
+            Inspirado no <strong>Problema 1 da IYPT 2024</strong>, este projeto investigou como estimar o número de objetos (como fósforos ou balas) dentro de uma caixa <em>sem abri-la</em>, apenas analisando o som produzido ao sacudi-la.
+          </p>
+        
+          <h3>🔊 Fundamentos Físicos</h3>
+          <p>
+            As colisões entre objetos (e com as paredes) geram ondas sonoras cuja <strong>intensidade</strong> e <strong>frequência</strong> dependem de variáveis como:
+            <ul>
+              <li>grau de empacotamento (Φ),</li>
+              <li>energia cinética média,</li>
+              <li>geometria e material da caixa,</li>
+              <li>número total de partículas \( N \).</li>
+            </ul>
+          </p>
+        
+          <h3>📈 Modelo Teórico</h3>
+          <p>
+            Relacionamos a <strong>entropia do sistema</strong> ao número de microestados disponíveis, desprezando rotações e posições:
+          </p>
+        
+          <p>
+            $$ \Omega \propto \frac{V^N E^{\frac{3N}{2}}}{N!} \Rightarrow S = k \ln \Omega $$
+          </p>
+        
+          <p>
+            A intensidade sonora \( I \) foi modelada como uma <strong>curva de Poisson</strong> em função de Φ:
+          </p>
+        
+          <p>
+            $$ I(\Phi) = A \cdot \Phi^k \cdot e^{-\lambda \Phi} $$
+          </p>
+        
+          <p>
+            Onde \( A \), \( k \) e \( \lambda \) foram ajustados experimentalmente para cada tipo de objeto/caixa.
+          </p>
+        
+          <h3>🎤 Montagem Experimental</h3>
+          <ul>
+            <li>Microfone passivo com 41 kHz de amostragem</li>
+            <li>Interface Phantom Power</li>
+            <li>Rotacionador + caixa com fósforos</li>
+            <li>Registro dos sons e conversão em espectrogramas Mel</li>
+          </ul>
+        
+          <h3>🧠 Rede Neural</h3>
+          <p>
+            Utilizamos um modelo simples de rede neural que recebeu como entrada o espectrograma Mel do som gravado. O modelo foi capaz de prever \( N \) com <strong>erro médio quadrático abaixo de 10%</strong> em configurações conhecidas.
+          </p>
+        
+          <h3>📊 Resultados</h3>
+          <p>
+            Foi observada uma correlação direta entre o <em>grau de compactação</em> e a diminuição da entropia acústica — em outras palavras: <strong>quanto mais cheia a caixa, mais silencioso e previsível o som.</strong>
+          </p>
+        
+          <p>
+            A frequência de colisões foi calculada com base na distribuição de velocidades de Maxwell-Boltzmann:
+          </p>
+        
+          <p>
+            $$ f \propto \sqrt{\frac{kT}{m}} \cdot \frac{N}{V} $$
+          </p>
+        
+          <h3>🎯 Conclusão</h3>
+          <p>
+            O projeto uniu <strong>termodinâmica estatística</strong>, <strong>acústica</strong>, <strong>redes neurais</strong> e <strong>modelagem matemática</strong> para solucionar um problema de natureza simples com rigor científico. Transformamos uma caixa sacudida em uma fonte de dados rica — uma balança acústica de fósforos!
+          </p>
+        
+        </section>
+        
+        
+        <section id="raman" class="section">
+          <h2>🧪 Análise Raman de Polímeros</h2>
+        
+          <p>
+            Este projeto, parte do <strong>Problema 17 da IYPT 2025</strong>, teve como objetivo explicar o efeito Raman em polímeros orgânicos (como o isopor) e determinar sua estrutura molecular a partir do espectro Raman. A proposta envolveu desde coleta experimental com espectrômetro da UFC até modelagem computacional por DFT (Density Functional Theory).
+          </p>
+        
+          <h3>🌈 Efeito Raman</h3>
+          <p>
+            Quando uma amostra é irradiada com um laser, a luz espalhada pode ter energia diferente da luz incidente. Isso se deve ao espalhamento inelástico de fótons, conhecido como <strong>efeito Raman</strong>, que revela os modos vibracionais da molécula.
+          </p>
+        
+          <p>
+            As componentes principais são:
+            <ul>
+              <li><strong>Espalhamento Stokes:</strong> fóton perde energia → \( \lambda_{espalhada} > \lambda_{laser} \)</li>
+              <li><strong>Espalhamento Anti-Stokes:</strong> fóton ganha energia → \( \lambda_{espalhada} < \lambda_{laser} \)</li>
+            </ul>
+          </p>
+        
+          <p>
+            O deslocamento Raman é dado por:
+            </p>
+            <p>
+            $$ \Delta \nu = \left( \frac{1}{\lambda_0} - \frac{1}{\lambda_1} \right) $$
+            </p>
+            <p>
+            E sua energia associada:
+            </p>
+            <p>
+            $$ \Delta E = h \cdot \Delta \nu \cdot c $$
+          </p>
+        
+          <h3>🔬 Montagem Experimental</h3>
+          <p>
+            Os espectros foram obtidos no <strong>espectrômetro de Raman do Departamento de Física da UFC</strong>, com as seguintes condições:
+            <ul>
+              <li>Laser He-Ne (632,8 nm), 15 mW</li>
+              <li>Detector CCD resfriado (-70°C)</li>
+              <li>Objetivas de 10x a 100x</li>
+              <li>Coleta com <code>Labspec 5</code> e análise com <code>OriginPro</code></li>
+            </ul>
+          </p>
+        
+          <h3>🧪 Polímeros Investigados</h3>
+          <p>
+            Foram testadas amostras como:
+            <ul>
+              <li>Polietileno Glicol (MM 400, 4000, 10000)</li>
+              <li>Polivinilpirrolidona</li>
+              <li>Polipropileno / Polipropileno de alta carga</li>
+              <li>Cera de polietileno, Poliisopreno, PVA, etc.</li>
+            </ul>
+          </p>
+        
+          <h3>📊 Análise Computacional</h3>
+          <p>
+            Utilizamos o software <strong>Gaussian</strong> com estruturas modeladas no <strong>Avogadro 2</strong> para prever espectros teóricos de Raman usando a técnica DFT. Os espectros teóricos foram comparados com os experimentais por <strong>similaridade cosseno</strong>:
+          </p>
+        
+          <p>
+            $$ \text{SC} = \frac{A \cdot B}{\|A\| \|B\|} $$
+          </p>
+        
+          <p>
+            Essa métrica ignora diferenças de intensidade absoluta, focando na forma dos espectros. Isso torna o processo robusto contra ruídos e variações de calibração.
+          </p>
+        
+          <h3>📉 Resultados</h3>
+          <p>
+            Observamos que:
+            <ul>
+              <li>Impurezas causam picos difusos ou ombros</li>
+              <li>Alterações na cristalinidade modificam a largura dos picos</li>
+              <li>A massa molecular afeta a posição dos modos vibracionais</li>
+            </ul>
+            Também foi possível estimar a <strong>estrutura química</strong> com precisão razoável a partir do espectro medido.
+          </p>
+        
+          <p>
+            A figura a seguir ilustra um dos espectros obtidos e o ajuste feito:
+          </p>
+          <p>
+            $$ \text{Exemplo de pico: } 1448 \, \text{cm}^{-1} \quad (\text{C–H deformação}) $$
+          </p>
+        
+          <h3>📚 Conclusão</h3>
+          <p>
+            Este projeto uniu <strong>física quântica, espectroscopia e aprendizado de máquina</strong> para identificar polímeros através de assinaturas vibracionais. O modelo teórico foi validado experimentalmente, e os resultados indicam que a espectroscopia Raman é uma ferramenta poderosa para análise não destrutiva de materiais orgânicos.
+          </p>
+        </section>
+        
+        
+        <section id="rayleigh" class="section">
+          <h2>🔥 Convecção de Rayleigh-Bénard em Suspensões</h2>
+        
+          <p>
+            Este projeto, baseado no <strong>Problema 10 da IYPT 2025</strong>, investigou a formação de <strong>padrões convectivos auto-organizados</strong> em fluidos aquecidos de baixo para cima. Em particular, estudamos como a suspensão de pós (como mica, glitter e grafite) em óleos afeta o surgimento das chamadas <em>células de Bénard</em>.
+          </p>
+        
+          <h3>🌡️ Fenômeno Físico</h3>
+          <p>
+            A convecção de Rayleigh-Bénard ocorre quando um fluido entre duas placas horizontais é aquecido por baixo e resfriado por cima. A diferença de temperatura induz uma diferença de densidade que gera empuxo. Se esse empuxo for suficientemente forte para superar a dissipação viscosa e a difusão térmica, surgem padrões organizados de movimento — as <strong>células hexagonais</strong>.
+          </p>
+        
+          <p>
+            A condição crítica é dada pelo <strong>Número de Rayleigh</strong>:
+          </p>
+        
+          <p>
+            $$ \mathrm{Ra} = \frac{g \alpha \Delta T H^3}{\nu \kappa} $$
+          </p>
+        
+          <ul>
+            <li>\( g \): gravidade</li>
+            <li>\( \alpha \): coeficiente de expansão térmica</li>
+            <li>\( \Delta T \): diferença de temperatura</li>
+            <li>\( H \): altura da camada de fluido</li>
+            <li>\( \nu \): viscosidade cinemática</li>
+            <li>\( \kappa \): difusividade térmica</li>
+          </ul>
+        
+          <p>
+            O fenômeno só se inicia quando \( \mathrm{Ra} > \mathrm{Ra}_\text{crítico} \approx 1708 \).
+          </p>
+        
+          <h3>🧪 Montagem Experimental</h3>
+          <p>
+            Utilizamos placas de Petri de diferentes tamanhos preenchidas com óleos (silicone, rícino, glicerina, etc.) e partículas em suspensão. O fundo foi aquecido por uma chapa térmica com controle via Arduino. A parte superior manteve-se isolada termicamente com madeira e putrescina.
+          </p>
+        
+          <p>
+            Equipamentos utilizados:
+            <ul>
+              <li>Microscópio USB</li>
+              <li>Viscosímetro e densímetro para caracterizar os fluidos</li>
+              <li>Câmera térmica para validar isolamento</li>
+              <li>Software Axio Vision e OriginPro para análise</li>
+            </ul>
+          </p>
+        
+          <h3>📏 Medidas e Resultados</h3>
+          <p>
+            A análise quantitativa envolveu medir:
+            <ul>
+              <li><strong>Tempo de formação das células</strong>: depende da viscosidade e condutividade térmica do óleo.</li>
+              <li><strong>Tamanho médio das células</strong>: cerca de 5,2 mm para uma placa de 5 cm de raio.</li>
+              <li><strong>Formato</strong>: células hexagonais surgem naturalmente por minimização de energia.</li>
+              <li><strong>Influência do pó:</strong> concentrações altas (\( \phi > 10\% \)) causam distorção dos padrões.</li>
+            </ul>
+          </p>
+        
+          <h3>📐 Modelagem Matemática</h3>
+          <p>
+            O regime convectivo depende de vários números adimensionais:
+          </p>
+        
+          <ul>
+            <li><strong>Número de Prandtl:</strong> \( \mathrm{Pr} = \nu / \kappa \)</li>
+            <li><strong>Número de Grashof:</strong> \( \mathrm{Gr} = \frac{g \alpha \Delta T H^3}{\nu^2} \)</li>
+            <li><strong>Número de Nusselt:</strong> \( \mathrm{Nu} > 1 \Rightarrow \) convecção efetiva</li>
+          </ul>
+        
+          <p>
+            Fluidos com alta viscosidade (Pr alto) tendem a formar células maiores e menos numerosas. O comportamento caótico foi modelado pela <strong>intermitência de Lorenz</strong>, observada quando \( \mathrm{Ra} \gg 10^4 \).
+          </p>
+        
+          <h3>⚠️ Interferências: Efeito Marangoni</h3>
+          <p>
+            Camadas finas de fluido e grandes gradientes de temperatura induzem o <strong>efeito Marangoni</strong>, em que diferenças de tensão superficial na interface líquido-ar causam fluxos horizontais que competem com as células de Rayleigh-Bénard. Esse efeito foi visível em óleos de baixa viscosidade como o silicone.
+          </p>
+        
+          <h3>📊 Conclusão</h3>
+          <p>
+            Demonstramos experimentalmente o surgimento de padrões convectivos e como eles dependem criticamente de fatores físicos como viscosidade, densidade, tipo de pó e controle térmico. O projeto combinou <strong>mecânica dos fluidos, termodinâmica e análise estatística</strong> para explicar visualmente um dos fenômenos mais belos da física: a auto-organização espontânea.
+          </p>
+        </section>
+        
+        
+        <section id="alice" class="section">
+          <h2>🎮 Alice no estilo Cuphead</h2>
+        
+          <p>
+            Inspirado na estética vintage de <strong>Cuphead</strong>, este jogo foi desenvolvido em Python com <code>Pygame</code> e traz a personagem <strong>Alice</strong> enfrentando chefes peculiares em combates laterais e aéreos. Todos os sprites, controles e fases foram criados do zero, com destaque para o visual retrô, sistema de pontuação e suporte completo a joystick.
+          </p>
+        
+          <h3>🎮 Jogabilidade</h3>
+          <p>
+            O jogador controla Alice em duas modalidades:
+            <ul>
+              <li><strong>Fase aérea:</strong> Alice pilota uma xícara voadora, com movimentação livre, desviando de projéteis e enfrentando chefes no céu.</li>
+              <li><strong>Fase terrestre:</strong> Alice percorre cenários laterais enfrentando inimigos clássicos em estilo plataforma com pulo e disparos.</li>
+            </ul>
+          </p>
+        
+          <h3>👾 Inimigos e Chefes</h3>
+            <p>
+              O jogo apresenta três fases principais, cada uma com seu próprio chefe, desafios e ambientações únicas:
+            </p>
+
+            <ul>
+              <li>
+                <strong>1️⃣ Rainha de Copas:</strong> Invoca cartas assassinas que perseguem Alice e desencadeia uma chuva de corações danosos. A batalha acontece em um cenário realista de jardim mágico. Alice precisa derrotá-la para seguir sua jornada.
+              </li>
+              <li>
+                <strong>2️⃣ Tweedledum & Tweedledee:</strong> Uma fase aérea onde Alice pilota a <em>Rainha Xícara</em>. Os gêmeos atacam usando naves e padrões de projéteis com ovos e ioiôs giratórios. Exige agilidade e movimentação precisa.
+              </li>
+              <li>
+                <strong>3️⃣ Rainha Vermelha:</strong> A batalha final ocorre sobre um tabuleiro de xadrez flutuante. A Rainha invoca peças de xadrez animadas e livros voadores encantados. Alice deve vencer para libertar a Rainha Branca e restaurar a ordem.
+              </li>
+            </ul>
+
+        
+          <h3>🕹️ Controles e Interface</h3>
+          <p>
+            O jogo é compatível com controle de Xbox, com navegação por teclado virtual e menus estilizados como em editores de texto retrô. A HUD mostra a vida, pontuação e progresso da fase.
+          </p>
+        
+          <h3>🎵 Som e Trilha</h3>
+          <p>
+            O jogo possui:
+            <ul>
+              <li>🔊 <strong>Trilha sonora dinâmica</strong> para cada fase e chefe;</li>
+              <li>🔊 <strong>Efeitos sonoros</strong> distintos para disparos, colisões e dano;</li>
+              <li>🔊 Gerenciamento de camadas de som via canais do Pygame.</li>
+            </ul>
+          </p>
+        
+          <h3>🏆 Ranking e Sistema de Pontuação</h3>
+          <p>
+            Após vencer um chefe, o jogador recebe uma pontuação com base em critérios como tempo de conclusão e número de acertos. As pontuações são salvas localmente em um arquivo <code>ranking.json</code> e exibidas no menu.
+          </p>
+        
+          <h3>🔗 Repositório no GitHub</h3>
+          <p>
+            Código-fonte completo e instruções para rodar o jogo estão disponíveis em:<br />
+            <a href="https://github.com/mthperera/cuphead-alice" target="_blank">🔗 github.com/mthperera/cuphead-alice</a>
+          </p>
+        </section>
+        
+        
+        
+        <section id="supercondutores" class="section">
+          <h2>❄️ Previsão da Temperatura Crítica de Supercondutores</h2>
+        
+          <p>
+            Este projeto utiliza <strong>machine learning</strong> e <strong>redes neurais</strong> para prever a <em>temperatura crítica</em> (\( T_c \)) de materiais supercondutores a partir de suas propriedades químicas e físicas. A proposta integra física do estado sólido, engenharia de atributos e modelagem estatística com <code>PyTorch</code>.
+          </p>
+        
+          <h3>📊 Objetivo</h3>
+          <p>
+            Prever \( T_c \), o ponto no qual a resistividade elétrica de um material zera, utilizando apenas informações sobre sua composição química. O modelo substitui testes laboratoriais caros por predições automáticas baseadas em dados.
+          </p>
+        
+          <h3>🔬 Dataset</h3>
+          <p>
+            Utilizamos o <a href="https://archive.ics.uci.edu/dataset/446/superconductivty+data" target="_blank">Superconductivity Dataset</a> da UCI, contendo:
+            <ul>
+              <li>21.000 amostras de compostos químicos;</li>
+              <li>80 atributos físico-químicos (média, entropia, densidade atômica, etc.);</li>
+              <li>Temperatura crítica real como alvo de regressão.</li>
+            </ul>
+          </p>
+        
+          <h3>🧠 Modelagem</h3>
+          <p>
+            Foram testados modelos de regressão tradicional e redes neurais profundas. As etapas incluíram:
+            <ul>
+              <li>Pré-processamento com <code>StandardScaler</code>;</li>
+              <li>Transformação alvo com raiz quadrada para suavizar a distribuição;</li>
+              <li>Treinamento de redes <code>PyTorch</code> com função de perda <code>MSELoss</code> e otimização <code>Adam</code>;</li>
+              <li>Reversão da transformação para avaliar \( T_c \) real.</li>
+            </ul>
+          </p>
+        
+          <h3>📈 Métricas</h3>
+          <p>
+            Avaliamos os modelos usando:
+            <ul>
+              <li><strong>MAE (Erro Absoluto Médio):</strong> em Kelvin</li>
+              <li><strong>RMSE:</strong> raiz do erro quadrático médio</li>
+              <li><strong>\( R^2 \):</strong> coeficiente de determinação</li>
+            </ul>
+          </p>
+        
+          <p>
+            Após normalização e inversão das transformações, os melhores modelos apresentaram \( R^2 > 0{,}92 \) e erro médio inferior a 5 K.
+          </p>
+        
+          <h3>💡 Resultados e Conclusão</h3>
+          <p>
+            Mostramos que é possível prever a temperatura crítica de um supercondutor com alta precisão usando apenas suas propriedades químicas. Este modelo serve como um exemplo de como machine learning pode acelerar pesquisas em materiais avançados.
+          </p>
+        
+          <h3>🔗 Repositório no GitHub</h3>
+          <p>
+            Acesse o código-fonte e os notebooks do projeto:<br />
+            <a href="https://github.com/mthperera/predict-critical-temperature" target="_blank">🔗 github.com/mthperera/predict-critical-temperature</a>
+          </p>
+        </section>
+        
+        
+        <section id="dino-ai" class="section">
+          <h2>🦖 Dino AI com NEAT</h2>
+        
+          <p>
+            Este projeto recria o clássico jogo do <strong>dinossauro do Chrome</strong>, mas com um diferencial: o personagem aprende a jogar sozinho! A inteligência artificial foi treinada usando o algoritmo <strong>NEAT (NeuroEvolution of Augmenting Topologies)</strong>, permitindo que redes neurais evoluam e se adaptem para maximizar a pontuação.
+          </p>
+        
+          <h3>🎮 Mecânica do Jogo</h3>
+          <p>
+            O dinossauro corre automaticamente por um deserto infinito, desviando de cactos. O desafio consiste em pular no tempo certo.
+          </p>
+        
+          <h3>🧬 Algoritmo NEAT</h3>
+          <p>
+            O NEAT é um algoritmo de evolução de redes neurais que começa com topologias simples e as complexifica com o tempo. A cada geração:
+            <ul>
+              <li>Os dinossauros jogam individualmente;</li>
+              <li>Redes neurais são avaliadas pela <strong>pontuação alcançada</strong> (fitness);</li>
+              <li>Os melhores genomas são cruzados e mutados para formar a próxima geração;</li>
+              <li>As topologias e pesos são ajustados automaticamente.</li>
+            </ul>
+          </p>
+        
+          <h3>👁️‍🗨️ Entrada e Decisão</h3>
+          <p>
+            Cada dinossauro toma decisões com base em:
+            <ul>
+              <li>Distância até os dois próximos obstáculos;</li>
+            </ul>
+            A rede decide entre: <code>pular</code>, <code>abaixar</code> ou <code>não fazer nada</code>.
+          </p>
+        
+          <h3>📈 Resultados</h3>
+          <p>
+            Após poucas gerações, a IA aprende a ultrapassar obstáculos com consistência. Com mais tempo de evolução, surgem redes neurais extremamente eficientes, capazes de atingir pontuações altíssimas. O projeto demonstra na prática como <strong>seleção natural + redes neurais</strong> podem resolver problemas complexos de controle em tempo real.
+          </p>
+        
+          <h3>🔗 Repositório no GitHub</h3>
+          <p>
+            Código-fonte completo e instruções para rodar a simulação estão em:<br />
+            <a href="https://github.com/mthperera/dino-ai" target="_blank">🔗 github.com/mthperera/dino-ai</a>
+          </p>
+        </section>
+           
 
         <section id="conquistas" class="section">
           <h2>Conquistas</h2>
@@ -187,7 +606,7 @@
       fosforo:        { label: 'fosforo.md',             icon: '📝' },
       raman:          { label: 'raman.md',               icon: '📝' },
       rayleigh:       { label: 'rayleigh.md',            icon: '📝' },
-      cuphead:        { label: 'cuphead.md',             icon: '📝' },
+      alice:          { label: 'alice.md',             icon: '📝' },
       supercondutores:{ label: 'supercondutores.md',      icon: '📝' },
       'dino-ai':      { label: 'dino-ai.md',             icon: '📝' },
       conquistas:     { label: 'conquistas.md',           icon: '🏅' },
@@ -324,6 +743,11 @@
       openTab("readme");
       document.querySelectorAll('.subfolder').forEach(folder => folder.style.display = 'none'); // Garante que subpastas estejam fechadas inicialmente
     };
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
 </body>
 </html>
