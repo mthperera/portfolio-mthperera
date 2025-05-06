@@ -6,6 +6,10 @@ body {
   overflow: hidden;
 }
 
+:root {
+  --sidebar-width: 220px;
+}
+
 .container {
   display: flex;
   height: 100vh;
@@ -126,19 +130,21 @@ a {
 #terminal {
   position: fixed;
   bottom: 0;
-  left: 235px; /* mesma largura da sidebar */
-  right: 0;
-  height: 60px;
+  left: 255px; /* alinha com a borda direita da sidebar */
+  right: 0;                   /* vai até a borda direita da tela */
+  height: 90px;
   background-color: #1e1f29;
   border-top: 1px solid #444;
-  padding: 1rem;
+  padding: 1rem 2rem;
   font-size: 0.95rem;
   color: #f1fa8c;
   font-family: monospace;
   z-index: 10;
   display: none;
   overflow-y: auto;
+  box-sizing: border-box;
 }
+
 
 #terminal::before {
   content: "PS C:\\Users\\Matheus Borba\\mthperera>";
