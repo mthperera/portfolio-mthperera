@@ -10,13 +10,33 @@
   <div class="container">
     <aside class="sidebar">
       <div class="folder">📁 mthperera</div>
-      <ul>
-        <li><a href="#" onclick="openTab('readme')">📝 README.md</a></li>
-        <li><a href="#" onclick="openTab('projetos')">📁 projetos/</a></li>
-        <li><a href="#" onclick="openTab('conquistas')">🏅 conquistas.md</a></li>
-        <li><a href="#" onclick="openTab('contato')">📄 contato.txt</a></li>
+      <ul class="file-tree">
+        <li class="file-item"><span class="icon">📝</span><a href="#" onclick="openTab('readme')">README.md</a></li>
+      
+        <li class="folder-toggle">
+          <div class="folder-click" onclick="toggleFolder(this)">
+            <span class="icon arrow">▶</span>
+            <span class="icon">📁</span>
+            <span class="folder-label">projetos/</span>
+          </div>
+          <ul class="subfolder">
+            <li><span class="line"></span><a href="#" onclick="openTab('resumo')">📄 resumo.txt</a></li>
+            <li><span class="line"></span><a href="#" onclick="openTab('fosforo')">📝 fosforo.md</a></li>
+            <li><span class="line"></span><a href="#" onclick="openTab('raman')">📝 raman.md</a></li>
+            <li><span class="line"></span><a href="#" onclick="openTab('rayleigh')">📝 rayleigh.md</a></li>
+            <li><span class="line"></span><a href="#" onclick="openTab('cuphead')">📝 cuphead.md</a></li>
+            <li><span class="line"></span><a href="#" onclick="openTab('supercondutores')">📝 supercondutores.md</a></li>
+            <li><span class="line"></span><a href="#" onclick="openTab('dino-ai')">📝 dino-ai.md</a></li>
+          </ul>
+        </li>
+        
+      
+        <li class="file-item"><span class="icon">🏅</span><a href="#" onclick="openTab('conquistas')">conquistas.md</a></li>
+        <li class="file-item"><span class="icon">📄</span><a href="#" onclick="openTab('contato')">contato.txt</a></li>
       </ul>
+      
     </aside>
+    
 
     <main class="main">
       <div class="tabs" id="tabs"></div>
@@ -61,8 +81,8 @@
         </section>
         
 
-        <section id="projetos" class="section">
-          <h2>Projetos</h2>
+        <section id="resumo" class="section">
+          <h2>Projetos em Destaque</h2>
           <ul>
             <li>
               <strong>📦 Previsão da quantidade de fósforo dentro de uma caixinha</strong><br />
@@ -148,7 +168,7 @@
           <div class="contato-item">
             <img src="https://cdn-icons-png.flaticon.com/512/2306/2306154.png" alt="Lattes" class="icon" />
             <div>
-              <a href="https://lattes.cnpq.br/seu-id" target="_blank"><strong>Lattes</strong></a>
+              <a href="http://lattes.cnpq.br/3616600365153661" target="_blank"><strong>Lattes</strong></a>
               <p>Veja meu currículo acadêmico completo, com publicações, prêmios e trajetória científica.</p>
             </div>
           </div>
@@ -162,49 +182,86 @@
 
   <script>
     const tabData = {
-      readme: { label: 'README.md', icon: '📝' },
-      projetos: { label: 'projetos', icon: '📁' },
-      conquistas: { label: 'conquistas.md', icon: '🏅' },
-      contato: { label: 'contato.txt', icon: '📄' }
+      readme:         { label: 'README.md',               icon: '📝' },
+      resumo:         { label: 'resumo.txt',              icon: '📄' },
+      fosforo:        { label: 'fosforo.md',             icon: '📝' },
+      raman:          { label: 'raman.md',               icon: '📝' },
+      rayleigh:       { label: 'rayleigh.md',            icon: '📝' },
+      cuphead:        { label: 'cuphead.md',             icon: '📝' },
+      supercondutores:{ label: 'supercondutores.md',      icon: '📝' },
+      'dino-ai':      { label: 'dino-ai.md',             icon: '📝' },
+      conquistas:     { label: 'conquistas.md',           icon: '🏅' },
+      contato:        { label: 'contato.txt',            icon: '📄' }
     };
+
 
     const tabsEl = document.getElementById("tabs");
     const terminal = document.getElementById("terminal");
 
     function openTab(id) {
-      // ativa conteúdo
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+  // 1) desativa todas as seções
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  
+  // 2) ativa a seção clicada
+  const section = document.getElementById(id);
+  if (!section) {
+    console.error(`Seção com ID "${id}" não encontrada.`);
+    return;
+  }
+  section.classList.add('active');
 
-      // terminal visível se houver aba
-      terminal.style.display = 'block';
+  // 3) mostra o terminal
+  terminal.style.display = 'block';
 
-      // ativa aba se já existe
-      const existing = document.getElementById("tab-" + id);
-      if (existing) {
-        setActiveTab(existing);
-        return;
+  // 4) ativa aba existente ou cria nova
+  const existing = document.getElementById("tab-" + id);
+  if (existing) {
+    setActiveTab(existing);
+    return;
+  }
+
+  // cria nova aba
+  const tab = document.createElement("div");
+  tab.className = "tab active";
+  tab.id        = "tab-" + id;
+  tab.draggable = true;
+
+  // conteúdo da aba (sem onclick inline no container)
+  tab.innerHTML = `
+    ${tabData[id].icon} ${tabData[id].label}
+    <span class="close">✕</span>
+  `;
+
+  // **1. drag handlers** (parte 1 que você já refez)
+  tab.addEventListener("dragstart", e => {
+    e.dataTransfer.setData("text/plain", id);
+    tab.classList.add("dragging");
+  });
+  tab.addEventListener("dragend", () => {
+    tab.classList.remove("dragging");
+  });
+
+  // **2. clique na aba** reabre/foca ela
+  tab.addEventListener("click", () => openTab(id));
+
+  // **3. fechar sem disparar o click da aba**
+  const btn = tab.querySelector(".close");
+  btn.addEventListener("click", e => {
+    e.stopPropagation();            // evita que o click suba para a aba
+    closeTab(e, id);
+  });
+
+  tabsEl.appendChild(tab);
+  setActiveTab(tab);
+  }
+
+
+    function toggleFolder(element) {
+      const subfolder = element.nextElementSibling;
+      if (subfolder && subfolder.classList.contains('subfolder')) {
+        subfolder.style.display = subfolder.style.display === 'block' ? 'none' : 'block';
+        element.querySelector('.arrow').textContent = subfolder.style.display === 'block' ? '▼' : '▶';
       }
-
-      // cria nova aba
-      const tab = document.createElement("div");
-      tab.className = "tab active";
-      tab.id = "tab-" + id;
-      tab.draggable = true;
-      tab.innerHTML = `${tabData[id].icon} ${tabData[id].label} <span class="close" onclick="closeTab(event, '${id}')">✕</span>`;
-      tab.onclick = () => openTab(id);
-
-      tab.addEventListener("dragstart", e => {
-        e.dataTransfer.setData("text/plain", id);
-        tab.classList.add("dragging");
-      });
-
-      tab.addEventListener("dragend", () => {
-        tab.classList.remove("dragging");
-      });
-
-      tabsEl.appendChild(tab);
-      setActiveTab(tab);
     }
 
     function closeTab(e, id) {
@@ -265,6 +322,7 @@
 
     window.onload = () => {
       openTab("readme");
+      document.querySelectorAll('.subfolder').forEach(folder => folder.style.display = 'none'); // Garante que subpastas estejam fechadas inicialmente
     };
   </script>
 </body>

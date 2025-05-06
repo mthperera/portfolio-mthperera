@@ -177,3 +177,127 @@ a {
   height: 48px;
   border-radius: 50%;
 }
+
+.subfolder {
+  margin-left: 1rem;
+  display: none;
+  list-style: none;
+  padding: 0;
+}
+
+.folder-toggle.open > .subfolder {
+  display: block;
+}
+
+.folder-toggle {
+  cursor: pointer;
+  user-select: none;
+}
+
+.folder-toggle > a {
+  display: inline-block;
+}
+
+.file-tree {
+  padding-left: 0;
+}
+
+.folder-toggle {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.folder-toggle > .arrow {
+  display: inline-block;
+  width: 1rem;
+  transition: transform 0.2s;
+}
+
+.folder-toggle.open > .arrow {
+  transform: rotate(90deg);
+}
+
+.subfolder {
+  list-style: none;
+  margin-left: 1.5rem;
+  border-left: 1px solid #444;
+  padding-left: 0.5rem;
+  display: none;
+}
+
+.folder-toggle.open > .subfolder {
+  display: block;
+}
+
+.subfolder li {
+  position: relative;
+}
+
+.subfolder .line {
+  position: absolute;
+  left: -1.2rem;
+  top: 0.8rem;
+  width: 1rem;
+  height: 1px;
+  background-color: #444;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.file-item .icon {
+  width: 1.2rem;
+  text-align: center;
+}
+
+.folder-label {
+  margin-left: 0.2rem;
+}
+
+.folder-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.folder-toggle > .arrow {
+  width: 1rem;
+  transition: transform 0.2s;
+}
+
+.folder-toggle.open > .arrow {
+  transform: rotate(90deg);
+}
+
+/* Faz o <li> comportar-se como bloco, empurrando a subpasta pra baixo */
+.folder-toggle {
+  display: block;         /* em vez de flex */
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Só a parte clicável fica flex em linha para alinhar seta + ícone + label */
+.folder-toggle > .folder-click {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Mantém a subpasta escondida/mostrada normalmente */
+.folder-toggle > .subfolder {
+  display: none;
+  margin-left: 1.5rem;
+  border-left: 1px solid #444;
+  padding-left: 0.5rem;
+  list-style: none;
+}
+
+.folder-toggle.open > .subfolder {
+  display: block;
+}
