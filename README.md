@@ -28,6 +28,13 @@ Criar uma aplicação com **design funcional**, **identidade visual clara** e **
 └── README.md
 ```
 
+
+## 🌐 Acesse o site
+
+O portfólio está disponível online em:  
+👉 [https://mthperera.github.io/portfolio-mthperera/](https://mthperera.github.io/portfolio-mthperera/)
+
+
 ## 🙋‍♂️ Autor
 
 Matheus Borba  
