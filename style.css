@@ -130,8 +130,8 @@ a {
 #terminal {
   position: fixed;
   bottom: 0;
-  left: 255px; /* alinha com a borda direita da sidebar */
-  right: 0;                   /* vai até a borda direita da tela */
+  left: 255px; 
+  right: 0;                  
   height: 90px;
   background-color: #1e1f29;
   border-top: 1px solid #444;
@@ -281,21 +281,19 @@ a {
   transform: rotate(90deg);
 }
 
-/* Faz o <li> comportar-se como bloco, empurrando a subpasta pra baixo */
 .folder-toggle {
-  display: block;         /* em vez de flex */
+  display: block;        
   cursor: pointer;
   user-select: none;
 }
 
-/* Só a parte clicável fica flex em linha para alinhar seta + ícone + label */
+
 .folder-toggle > .folder-click {
   display: flex;
   align-items: center;
   gap: 0.3rem;
 }
 
-/* Mantém a subpasta escondida/mostrada normalmente */
 .folder-toggle > .subfolder {
   display: none;
   margin-left: 1.5rem;
