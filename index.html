@@ -124,75 +124,92 @@
 
         <section id="fosforo" class="section">
           <h2>📦 Previsão da quantidade de fósforos</h2>
-          
+        
           <p>
             Inspirado no <strong>Problema 1 da IYPT 2024</strong>, este projeto investigou como estimar o número de objetos (como fósforos ou balas) dentro de uma caixa <em>sem abri-la</em>, apenas analisando o som produzido ao sacudi-la.
           </p>
         
           <h3>🔊 Fundamentos Físicos</h3>
           <p>
-            As colisões entre objetos (e com as paredes) geram ondas sonoras cuja <strong>intensidade</strong> e <strong>frequência</strong> dependem de variáveis como:
-            <ul>
-              <li>grau de empacotamento (Φ),</li>
-              <li>energia cinética média,</li>
-              <li>geometria e material da caixa,</li>
-              <li>número total de partículas \( N \).</li>
-            </ul>
+            As colisões entre os objetos — e entre objetos e as paredes — geram ondas sonoras cuja <strong>intensidade</strong> e <strong>frequência</strong> dependem de variáveis como:
           </p>
+          <ul>
+            <li>grau de empacotamento (Φ);</li>
+            <li>energia cinética média;</li>
+            <li>geometria e material da caixa;</li>
+            <li>número total de partículas \( N \).</li>
+          </ul>
         
           <h3>📈 Modelo Teórico</h3>
-          <p>
-            Relacionamos a <strong>entropia do sistema</strong> ao número de microestados disponíveis, desprezando rotações e posições:
-          </p>
-        
-          <p>
-            $$ \Omega \propto \frac{V^N E^{\frac{3N}{2}}}{N!} \Rightarrow S = k \ln \Omega $$
-          </p>
-        
-          <p>
-            A intensidade sonora \( I \) foi modelada como uma <strong>curva de Poisson</strong> em função de Φ:
-          </p>
-        
-          <p>
-            $$ I(\Phi) = A \cdot \Phi^k \cdot e^{-\lambda \Phi} $$
-          </p>
-        
-          <p>
-            Onde \( A \), \( k \) e \( \lambda \) foram ajustados experimentalmente para cada tipo de objeto/caixa.
-          </p>
+            <p>
+              Modelamos o sistema como um gás granular confinado. A complexidade do som emitido está ligada à <strong>entropia do sistema</strong>, que por sua vez depende do número de microestados acessíveis — representados por pontos no <strong>espaço de fases de \(6N\) dimensões</strong>, com \(3N\) coordenadas de posição e \(3N\) de momento.
+            </p>
+
+            <p>
+              Assumindo partículas indistinguíveis e desprezando rotações e posições absolutas, o número de microestados disponíveis para \(N\) partículas com energia total \(E\) e volume \(V\) pode ser estimado como:
+            </p>
+
+            <p>
+              $$ \Omega \propto \frac{V^N \cdot E^{\frac{3N}{2}}}{N! \cdot h^{3N}} $$
+            </p>
+
+            <p>
+              Onde \(h\) é a constante de Planck, garantindo que cada célula no espaço de fases tenha volume mínimo \(\sim h^{3N}\), conforme o <strong>princípio da incerteza de Heisenberg</strong>. A entropia associada é dada por:
+            </p>
+
+            <p>
+              $$ S = k_B \ln \Omega $$
+            </p>
+
+            <p>
+              A região acessível do espaço de fases é uma <strong>hiperesfera de \(6N\) dimensões</strong> centrada na origem, cujo raio depende da raiz quadrada da energia total. À medida que o número de partículas ou a energia aumenta, o volume dessa hiperesfera (e, portanto, a entropia) cresce rapidamente.
+            </p>
+
+            <p>
+              Isso implica que, para sistemas com baixa entropia (por exemplo, quando a caixa está cheia e as partículas estão restritas), o som gerado pelas colisões torna-se mais <strong>previsível</strong> e <strong>silencioso</strong>. Já para altos valores de entropia (caixas parcialmente cheias), o som é mais <strong>aleatório</strong> e <strong>intenso</strong>.
+            </p>
+
+            <p>
+              A intensidade sonora \( I \) foi ajustada empiricamente como uma <strong>curva de Poisson</strong> em função do grau de empacotamento Φ:
+            </p>
+
+            <p>
+              $$ I(\Phi) = A \cdot \Phi^k \cdot e^{-\lambda \Phi} $$
+            </p>
+
+            <p>
+              com \(A\), \(k\) e \(\lambda\) ajustados para diferentes combinações de objeto e caixa.
+            </p>
         
           <h3>🎤 Montagem Experimental</h3>
           <ul>
-            <li>Microfone passivo com 41 kHz de amostragem</li>
-            <li>Interface Phantom Power</li>
-            <li>Rotacionador + caixa com fósforos</li>
-            <li>Registro dos sons e conversão em espectrogramas Mel</li>
+            <li>Microfone passivo (41 kHz de amostragem);</li>
+            <li>Interface com Phantom Power;</li>
+            <li>Rotacionador + caixas variadas com objetos;</li>
+            <li>Registro dos sons e conversão para espectrogramas Mel.</li>
           </ul>
         
           <h3>🧠 Rede Neural</h3>
           <p>
-            Utilizamos um modelo simples de rede neural que recebeu como entrada o espectrograma Mel do som gravado. O modelo foi capaz de prever \( N \) com <strong>erro médio quadrático abaixo de 10%</strong> em configurações conhecidas.
+            Utilizamos uma rede neural leve que recebeu como entrada o espectrograma Mel do som gravado. O modelo conseguiu prever \( N \) com <strong>erro médio quadrático abaixo de 10%</strong> em configurações conhecidas.
           </p>
         
           <h3>📊 Resultados</h3>
           <p>
-            Foi observada uma correlação direta entre o <em>grau de compactação</em> e a diminuição da entropia acústica — em outras palavras: <strong>quanto mais cheia a caixa, mais silencioso e previsível o som.</strong>
+            Observamos que o aumento do <em>grau de empacotamento</em> reduz a entropia acústica — ou seja: <strong>quanto mais cheia a caixa, mais silencioso e previsível o som</strong>.
           </p>
-        
           <p>
-            A frequência de colisões foi calculada com base na distribuição de velocidades de Maxwell-Boltzmann:
+            A frequência de colisões foi modelada com base na distribuição de velocidades de Maxwell-Boltzmann:
           </p>
-        
           <p>
             $$ f \propto \sqrt{\frac{kT}{m}} \cdot \frac{N}{V} $$
           </p>
         
           <h3>🎯 Conclusão</h3>
           <p>
-            O projeto uniu <strong>termodinâmica estatística</strong>, <strong>acústica</strong>, <strong>redes neurais</strong> e <strong>modelagem matemática</strong> para solucionar um problema de natureza simples com rigor científico. Transformamos uma caixa sacudida em uma fonte de dados rica — uma balança acústica de fósforos!
+            Este projeto uniu <strong>termodinâmica estatística</strong>, <strong>acústica</strong>, <strong>redes neurais</strong> e <strong>modelagem matemática</strong> para transformar uma simples caixa sacudida em uma balança acústica capaz de estimar sua carga com precisão.
           </p>
-        
-        </section>
+        </section>        
         
         
         <section id="raman" class="section">
