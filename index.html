@@ -638,10 +638,10 @@
     const terminal = document.getElementById("terminal");
 
     function openTab(id) {
-  // 1) desativa todas as seções
+  // Desativa todas as seções
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   
-  // 2) ativa a seção clicada
+  // Ativa a seção clicada
   const section = document.getElementById(id);
   if (!section) {
     console.error(`Seção com ID "${id}" não encontrada.`);
@@ -649,29 +649,29 @@
   }
   section.classList.add('active');
 
-  // 3) mostra o terminal
+  // Mostra o terminal
   terminal.style.display = 'block';
 
-  // 4) ativa aba existente ou cria nova
+  // Ativa aba existente ou cria nova
   const existing = document.getElementById("tab-" + id);
   if (existing) {
     setActiveTab(existing);
     return;
   }
 
-  // cria nova aba
+  // Cria nova aba
   const tab = document.createElement("div");
   tab.className = "tab active";
   tab.id        = "tab-" + id;
   tab.draggable = true;
 
-  // conteúdo da aba (sem onclick inline no container)
+  // Conteúdo da aba (sem onclick inline no container)
   tab.innerHTML = `
     ${tabData[id].icon} ${tabData[id].label}
     <span class="close">✕</span>
   `;
 
-  // **1. drag handlers** (parte 1 que você já refez)
+  // Drag handlers
   tab.addEventListener("dragstart", e => {
     e.dataTransfer.setData("text/plain", id);
     tab.classList.add("dragging");
@@ -680,13 +680,13 @@
     tab.classList.remove("dragging");
   });
 
-  // **2. clique na aba** reabre/foca ela
+  // Reabre ou volta o foco para a página clicada
   tab.addEventListener("click", () => openTab(id));
 
-  // **3. fechar sem disparar o click da aba**
+  // Fecha sem disparar o clique 
   const btn = tab.querySelector(".close");
   btn.addEventListener("click", e => {
-    e.stopPropagation();            // evita que o click suba para a aba
+    e.stopPropagation();      
     closeTab(e, id);
   });
 
@@ -761,7 +761,7 @@
 
     window.onload = () => {
       openTab("readme");
-      document.querySelectorAll('.subfolder').forEach(folder => folder.style.display = 'none'); // Garante que subpastas estejam fechadas inicialmente
+      document.querySelectorAll('.subfolder').forEach(folder => folder.style.display = 'none'); 
     };
   </script>
 
